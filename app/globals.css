@@ -1,0 +1,409 @@
+@import "tailwindcss";
+ 
+/* ==========================================================
+   Variáveis
+   ========================================================== */
+ 
+:root {
+    --bg-color: #f3f6f8;
+    --card-bg: #ffffff;
+    --text-color: #172b3a;
+    --muted-text-color: #607381;
+    --border-color: #e2e9ed;
+ 
+    --primary-color: #4dd0ad;
+    --accent-color: #147d72;
+    --accent-dark: #10665e;
+    --dark-color: #142b3a;
+ 
+    --like-color: #be123c;
+    --like-bg: #fff1f2;
+    --like-border: #fecdd3;
+ 
+    --radius: 14px;
+    --shadow: 0 4px 12px rgba(23, 43, 58, 0.06);
+}
+ 
+@theme inline {
+    --color-background: var(--bg-color);
+    --color-foreground: var(--text-color);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+}
+ 
+/* ==========================================================
+   Base
+   ========================================================== */
+ 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 72px; /* o menu fixo não cobre o título da seção */
+    background-color: var(--bg-color);
+}
+ 
+body {
+    display: flex;
+    min-height: 100dvh;
+    flex-direction: column;
+    color: var(--text-color);
+    font-family: var(--font-geist-sans), "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-wrap: break-word;
+}
+ 
+:focus-visible {
+    outline: 3px solid rgba(77, 208, 173, 0.6);
+    outline-offset: 3px;
+}
+ 
+/* ==========================================================
+   Layout
+   ========================================================== */
+ 
+main {
+    --gap: clamp(40px, 6vw, 56px);
+ 
+    display: flex;
+    width: min(100% - clamp(32px, 6vw, 80px), 1040px);
+    flex: 1 0 auto;
+    flex-direction: column;
+    gap: var(--gap);
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+ 
+/* ==========================================================
+   Menu
+   ========================================================== */
+ 
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: clamp(16px, 4vw, 28px);
+    /* anula o gap do main para o cabeçalho ficar perto do menu */
+    margin-bottom: calc(var(--gap) * -1);
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-color);
+    /* esconde os "|" soltos entre os links */
+    font-size: 0;
+}
+ 
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: inherit;
+}
+ 
+nav a {
+    color: var(--muted-text-color);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 8px;
+    transition: color 0.2s, text-decoration-color 0.2s;
+}
+ 
+nav a:hover {
+    color: var(--text-color);
+    text-decoration-color: var(--accent-color);
+}
+ 
+/* ==========================================================
+   Cabeçalho
+   ========================================================== */
+ 
+header {
+    padding: clamp(40px, 9vw, 88px) 0 8px;
+}
+ 
+header h1 {
+    max-width: 720px;
+    margin-bottom: 16px;
+    font-size: clamp(1.9rem, 4.5vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+}
+ 
+header p {
+    max-width: 560px;
+    color: var(--muted-text-color);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height: 1.7;
+}
+ 
+/* ==========================================================
+   Seções
+   ========================================================== */
+ 
+.secao h2 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+    font-size: clamp(1.4rem, 3vw, 1.85rem);
+    font-weight: 650;
+    letter-spacing: -0.03em;
+}
+ 
+.secao h2::after {
+    width: 42px;
+    height: 3px;
+    border-radius: 99px;
+    background: var(--primary-color);
+    content: "";
+}
+ 
+.secao p {
+    max-width: 680px;
+    color: var(--muted-text-color);
+    font-size: clamp(1rem, 1.5vw, 1.05rem);
+    line-height: 1.8;
+}
+ 
+/* ==========================================================
+   Cards
+   ========================================================== */
+ 
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: clamp(14px, 2vw, 20px);
+}
+ 
+.card,
+.secao form {
+    min-width: 0;
+    padding: clamp(20px, 3vw, 26px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+}
+ 
+.card {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+ 
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(23, 43, 58, 0.1);
+}
+ 
+.card h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    font-weight: 650;
+}
+ 
+.card p {
+    color: var(--muted-text-color);
+    line-height: 1.7;
+}
+ 
+.card .detalhes {
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 8px;
+    background: #f0fdf9;
+    animation: aparecer 0.3s ease;
+}
+ 
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+}
+ 
+.tecnologias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+}
+ 
+.tecnologias li {
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: #edf2f7;
+    color: #2d3748;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+ 
+.acoes {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 16px;
+}
+ 
+.acoes .tecnologias {
+    margin-top: 0;
+}
+ 
+/* ==========================================================
+   Botões
+   ========================================================== */
+ 
+.B1,
+.B2,
+.secao form button {
+    min-height: 44px;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+ 
+/* curtir */
+.B1 {
+    border: 2px solid var(--like-border);
+    background: var(--like-bg);
+    color: var(--like-color);
+}
+ 
+.B1:hover {
+    background: #ffe4e6;
+    transform: scale(1.04);
+}
+ 
+/* ver detalhes / enviar */
+.B2,
+.secao form button {
+    border: 0;
+    background: var(--accent-color);
+    color: #fff;
+}
+ 
+.B2:hover,
+.secao form button:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+}
+ 
+.B1:active,
+.B2:active,
+.secao form button:active {
+    transform: scale(0.97);
+}
+ 
+/* ==========================================================
+   Formulário
+   ========================================================== */
+ 
+.secao form {
+    display: grid;
+    gap: 14px;
+    width: min(100%, 560px);
+    margin-top: 24px;
+}
+ 
+.secao form input {
+    width: 100%;
+    min-height: 46px;
+    padding: 11px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: #fff;
+    font-size: 1rem; /* 16px evita o zoom automático no iPhone */
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+ 
+.secao form input::placeholder {
+    color: var(--muted-text-color);
+}
+ 
+.secao form input:focus-visible {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(77, 208, 173, 0.25);
+}
+ 
+.secao form button {
+    justify-self: start;
+}
+ 
+.secao form p {
+    min-height: 1.5em;
+    color: var(--accent-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+ 
+/* ==========================================================
+   Lista de tarefas
+   ========================================================== */
+ 
+.lista-tarefas {
+    display: grid;
+    gap: 10px;
+    width: min(100%, 560px);
+    margin-top: 18px;
+}
+ 
+.lista-tarefas li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 16px;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--card-bg);
+}
+ 
+.lista-tarefas li > span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+ 
+.lista-tarefas .B1 {
+    min-height: 0;
+    padding: 8px 16px;
+    font-size: 0.875rem;
+}
+ 
+/* ==========================================================
+   Rodapé
+   ========================================================== */
+ 
+footer {
+    padding: 28px 16px;
+    background: var(--dark-color);
+    color: #c6d8d9;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: center;
+}
+ 
+/* ==========================================================
+   Responsivo
+   ========================================================== */
+ 
+@media (max-width: 600px) {
+    .secao form button {
+        justify-self: stretch;
+    }
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+    * {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+    }
+}
