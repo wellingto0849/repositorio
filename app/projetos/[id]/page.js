@@ -1,12 +1,14 @@
-import Cartao from "../../componentes/Cartao";
-import { projetos } from "../../componentes/dados";
+import { Suspense } from "react";
 
-export default async function Projeto({ params }) {
- const { id } = await params;
- const projeto = projetos.find((p) => p.id === Number(id));
- return <h1> 
-        {projeto.titulo}
-        {projeto.descricao}
-        {projeto.tecnologia}
-        </h1>
+async function Conteudo({ params }) {
+    const { id } = await params;
+    // ...aqui vai o resto (o find do projeto e o return com o JSX)
+}
+
+export default function Projeto({ params }) {
+    return (
+        <Suspense fallback={<p>Carregando...</p>}>
+            <Conteudo params={params} />
+        </Suspense>
+    );
 }

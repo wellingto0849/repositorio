@@ -12,7 +12,8 @@ export default function Home() {
       <nav>
         <Link href="/">Início | </Link>
         <Link href="/projetos">Projetos | </Link>
-        <Link href="/contato">Contato</Link>
+        <Link href="/contato">Contato | </Link>
+        <Link href="/github">GitHub</Link>
       </nav>
 
       <Cabecalho />

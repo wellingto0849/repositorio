@@ -6,9 +6,9 @@ import Link from "next/link";
 export default function Projetos(){
     return(
         <main>
-        <div>
-            <Link href="/"> Inicio </Link>
-            <h1> Meus Pojetos </h1>
+        <div className="page-header">
+            <Link href="/" className="voltar">Início</Link>
+            <h1 className="page-title">Meus Projetos</h1>
         </div>
         <Secao titulo="Projetos">
         {projetos.map((projeto) => (

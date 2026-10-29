@@ -6,9 +6,9 @@ export default function Contatos(){
     return( 
 
         <main>
-        <div>
-            <Link href="/"> Inicio </Link>
-            <h1> Entre em Contato </h1>
+        <div className="page-header">
+            <Link href="/" className="voltar">Início</Link>
+            <h1 className="page-title">Entre em Contato</h1>
         </div>
         <Secao titulo="Contato">
         <Contato />

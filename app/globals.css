@@ -138,6 +138,70 @@ header p {
     font-size: clamp(1rem, 2vw, 1.15rem);
     line-height: 1.7;
 }
+
+/* ==========================================================
+   Cabeçalho das páginas internas
+   ========================================================== */
+
+.voltar {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border: 1px solid var(--accent-color);
+    border-radius: 999px;
+    background: var(--accent-color);
+    box-shadow: var(--shadow);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s, border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+.voltar::before {
+    content: "←";
+}
+
+.voltar:hover {
+    transform: translateX(-2px);
+    border-color: var(--accent-dark);
+    background: var(--accent-dark);
+    color: #fff;
+}
+
+.page-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: clamp(20px, 4vw, 32px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+}
+
+.page-title {
+    max-width: 720px;
+    margin: 0;
+    color: var(--text-color);
+    font-size: clamp(1.9rem, 4.5vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+}
+
+.page-title::after {
+    display: block;
+    width: 52px;
+    height: 4px;
+    margin-top: 16px;
+    border-radius: 99px;
+    background: var(--primary-color);
+    content: "";
+}
  
 /* ==========================================================
    Seções
