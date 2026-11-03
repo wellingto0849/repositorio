@@ -20,13 +20,4 @@ export const projetos = [
      descricao: "HTML, CSS e modo escuro",
      tecnologia: ["HTML", "CSS", "JavaScript"],
 },
-
-{  
-    id: 1, titulo: "Meu portfólio", tecnologia: "Next.js" 
-},
-
-{  
-    id: 2, titulo: "Projeto Cartão", tecnologia: "React" 
-},
-
 ];
