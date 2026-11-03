@@ -22,6 +22,10 @@
  
     --radius: 14px;
     --shadow: 0 4px 12px rgba(23, 43, 58, 0.06);
+ 
+    --erro-color: #be123c;
+    --erro-bg: #fff1f2;
+    --erro-border: #fecdd3;
 }
  
 @theme inline {
@@ -138,11 +142,11 @@ header p {
     font-size: clamp(1rem, 2vw, 1.15rem);
     line-height: 1.7;
 }
-
+ 
 /* ==========================================================
    Cabeçalho das páginas internas
    ========================================================== */
-
+ 
 .voltar {
     display: inline-flex;
     min-height: 42px;
@@ -159,18 +163,18 @@ header p {
     text-decoration: none;
     transition: transform 0.2s, border-color 0.2s, background 0.2s, color 0.2s;
 }
-
+ 
 .voltar::before {
     content: "←";
 }
-
+ 
 .voltar:hover {
     transform: translateX(-2px);
     border-color: var(--accent-dark);
     background: var(--accent-dark);
     color: #fff;
 }
-
+ 
 .page-header {
     display: flex;
     flex-direction: column;
@@ -182,7 +186,7 @@ header p {
     background: var(--card-bg);
     box-shadow: var(--shadow);
 }
-
+ 
 .page-title {
     max-width: 720px;
     margin: 0;
@@ -192,7 +196,7 @@ header p {
     letter-spacing: -0.03em;
     line-height: 1.12;
 }
-
+ 
 .page-title::after {
     display: block;
     width: 52px;
@@ -439,6 +443,153 @@ header p {
     min-height: 0;
     padding: 8px 16px;
     font-size: 0.875rem;
+}
+ 
+/* ==========================================================
+   Menu: link do GitHub
+   ========================================================== */
+ 
+nav a.nav-github {
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--dark-color);
+    color: #fff;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+ 
+nav a.nav-github:hover {
+    background: var(--accent-color);
+    transform: translateY(-1px);
+}
+ 
+nav a[aria-current="page"] {
+    color: var(--text-color);
+    text-decoration-color: var(--accent-color);
+}
+ 
+/* ==========================================================
+   Página do GitHub (lista de repositórios)
+   ========================================================== */
+ 
+.repo-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+ 
+.repo-meta span {
+    padding: 5px 10px;
+    border-radius: 6px;
+    background: #edf2f7;
+    color: #2d3748;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+ 
+.card a {
+    display: inline-block;
+    margin-top: 14px;
+    color: var(--accent-color);
+    font-weight: 600;
+    text-underline-offset: 4px;
+}
+ 
+.card a:hover {
+    color: var(--accent-dark);
+}
+ 
+/* ==========================================================
+   Estados: carregando, vazio e erro
+   ========================================================== */
+ 
+.estado {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: clamp(20px, 3vw, 28px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+}
+ 
+.estado h2,
+.estado h3 {
+    font-size: 1.2rem;
+    font-weight: 650;
+}
+ 
+.estado p {
+    max-width: 560px;
+    color: var(--muted-text-color);
+    line-height: 1.7;
+}
+ 
+.estado-erro {
+    border-color: var(--erro-border);
+    border-left: 4px solid var(--erro-color);
+    background: var(--erro-bg);
+}
+ 
+.estado-erro h2,
+.estado-erro h3 {
+    color: var(--erro-color);
+}
+ 
+/* página inteira (404 e erro inesperado) */
+.estado-pagina {
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    text-align: center;
+}
+ 
+.estado-pagina .codigo {
+    color: var(--primary-color);
+    font-size: clamp(4rem, 14vw, 7rem);
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    line-height: 1;
+}
+ 
+.estado-pagina .page-title::after {
+    margin-right: auto;
+    margin-left: auto;
+}
+ 
+/* botões das telas de erro (ex.: "Voltar para o início") */
+.estado-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+}
+ 
+.estado-pagina .estado-acoes {
+    justify-content: center;
+}
+ 
+/* ==========================================================
+   Erro dentro de formulários (BuscaCep e Contato)
+   ========================================================== */
+ 
+.secao form p.erro,
+p.mensagem-erro {
+    padding: 10px 14px;
+    border: 1px solid var(--erro-border);
+    border-radius: 8px;
+    background: var(--erro-bg);
+    color: var(--erro-color);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+ 
+.secao form input.invalido {
+    border-color: var(--erro-color);
+    box-shadow: 0 0 0 3px rgba(190, 18, 60, 0.12);
 }
  
 /* ==========================================================
