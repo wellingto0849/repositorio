@@ -1,6 +1,7 @@
 import Contato from "../componentes/Contato";
 import Secao from "../componentes/Secao";
 import Link from "next/link";
+import BuscaCep from "../componentes/BuscaCep";
 
 export default function Contatos(){
     return( 
@@ -12,6 +13,7 @@ export default function Contatos(){
         </div>
         <Secao titulo="Contato">
         <Contato />
+        <BuscaCep />
         </Secao>
         </main>
     );
