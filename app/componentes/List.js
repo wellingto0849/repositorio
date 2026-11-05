@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react";
+import {criarTarefa} from "@/lib/Tarefas";
 
 export default function Form() {
   const [tarefas, setTarefas] = useState([]);
@@ -9,11 +10,12 @@ export default function Form() {
 
   function adicionar(e) {
     e.preventDefault();
+    try{
+      criarTarefa(texto);
 
-    const novaTarefa = texto.trim();
-    if (!novaTarefa) return;
-
-    setTarefas([...tarefas, { id: Date.now(), texto: novaTarefa }]);
+    }catch (error) {
+      console.error("Erro ao criar tarefa:", error);
+    }
     setTexto("");
   }
     
