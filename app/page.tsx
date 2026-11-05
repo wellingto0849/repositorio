@@ -2,9 +2,9 @@ import Cabecalho from "./componentes/Cabecalho";
 import Cartao from "./componentes/Cartao";
 import Secao from "./componentes/Secao";
 import { projetos } from "./componentes/dados";
-import Contato from "./componentes/Contato"
-import Form from "./componentes/List"
-import Link from "next/link"
+import Contato from "./componentes/Contato";
+import Form from "./componentes/List";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -29,7 +29,8 @@ export default function Home() {
               key={projeto.id}
               titulo={projeto.titulo}
               descricao={projeto.descricao}
-              tecnologia={projeto.tecnologia} />
+              tecnologia={projeto.tecnologia}
+            />
           ))}
         </div>
       </Secao>
@@ -38,10 +39,9 @@ export default function Home() {
         <Contato />
       </Secao>
 
-      <Secao titulo="Lista De Trefas">
-          <Form />
+      <Secao titulo="Lista de Tarefas">
+        <Form />                          {/* 2) uso do componente */}
       </Secao>
-
     </main>
   );
 }
