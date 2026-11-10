@@ -2,21 +2,25 @@
 import { useState } from "react";
 import { criarContato } from "@/lib/Contato";
 
-async function enviar(e, nome, setAviso) {
+async function enviar(e, nome, email, cpf, setAviso) {
   e.preventDefault();
   if (nome.trim().length < 3) {
     setAviso("Digite seu nome completo.");
     return;
   }
   try {
-    await criarContato(nome);
+    await criarContato(nome, email, cpf);
 
     const res = await fetch("/api/contato", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ nome }),
-    });
-    if (!res.ok) throw new Error("Não foi possível enviar.");
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ nome, email, cpf }),
+});
+
+if (!res.ok) {
+  console.log("Status:", res.status, "Resposta:", await res.text());
+  throw new Error("Não foi possível enviar.");
+}
 
     setAviso("Enviado com sucesso!");
   } catch (erro) {
@@ -28,14 +32,30 @@ async function enviar(e, nome, setAviso) {
 export default function Contato(){
  const [aviso, setAviso] = useState("");
  const [nome, setNome] = useState("");
+ const [email, setEmail] = useState("");
+ const [cpf, setCpf] = useState("");
 
   return (
-   <form onSubmit={(e) => enviar(e, nome, setAviso)}>
+   <form onSubmit={(e) => enviar(e, nome, email, cpf, setAviso)}>
       <input
         type="text"
         value={nome}
         onChange={(e) => (setNome(e.target.value), setAviso(`Obrigado, ${e.target.value}!`))}
         placeholder="Seu nome"
+      />
+      
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Seu email"
+      />
+
+      <input
+        type="text"
+        value={cpf}
+        onChange={(e) => setCpf(e.target.value)}
+        placeholder="Seu CPF"
       />
       <button type="submit">Enviar</button>
       <p>{aviso}</p>
