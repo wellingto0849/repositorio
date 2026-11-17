@@ -1,5 +1,5 @@
 // app/api/contato/route.js
-import { criarContato } from "@/lib/Contato";
+import { criarContato } from "@/componentes/Contato";
 import { NextResponse } from "next/server";
 
 export async function GET() {

@@ -1,4 +1,4 @@
-import { projetos } from "@/lib/dados";
+import { projetos } from "@/componentes/dados";
 
 export async function GET() {
   return Response.json(projetos);
