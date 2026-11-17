@@ -19,7 +19,7 @@ export default function Home() {
       <Cabecalho />
 
       <Secao titulo="Sobre mim">
-        <p>Estudo desenvolvimento web e crio interfaces funcionais, claras e modernas.</p>
+        <p>Eu estudo desenvolvimento web e crio interfaces funcionais, claras e modernas.</p>
       </Secao>
 
       <Secao titulo="Projetos">
