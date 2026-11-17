@@ -1,6 +1,6 @@
-import Cartao from "../componentes/Cartao"
-import { projetos } from "../componentes/dados"
-import Secao from "../componentes/Secao"
+import Cartao from "@/componentes/Cartao"
+import { projetos } from "@/componentes/dados"
+import Secao from "@/componentes/Secao"
 import Link from "next/link";
 
 export default function Projetos(){

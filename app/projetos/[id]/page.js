@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projetos } from "../../componentes/dados";
+import { projetos } from "@/componentes/dados";
 
 async function Conteudo({ params }) {
     const { id } = await params;

@@ -413,6 +413,7 @@ header p {
  
 /* ==========================================================
    Lista de tarefas
+   (mais tolerante: não depende de <span> nem da classe .B1)
    ========================================================== */
  
 .lista-tarefas {
@@ -420,6 +421,8 @@ header p {
     gap: 10px;
     width: min(100%, 560px);
     margin-top: 18px;
+    padding: 0;
+    list-style: none;
 }
  
 .lista-tarefas li {
@@ -434,15 +437,55 @@ header p {
     background: var(--card-bg);
 }
  
-.lista-tarefas li > span {
+/* o texto da tarefa: primeiro filho do <li>, seja span, p ou outro */
+.lista-tarefas li > :first-child {
     min-width: 0;
+    flex: 1 1 160px;
     overflow-wrap: anywhere;
 }
  
-.lista-tarefas .B1 {
+/* qualquer botão dentro da lista (remover, concluir...) */
+.lista-tarefas li button {
     min-height: 0;
     padding: 8px 16px;
+    border: 2px solid var(--like-border);
+    border-radius: 999px;
+    background: var(--like-bg);
+    color: var(--like-color);
     font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+ 
+.lista-tarefas li button:hover {
+    background: #ffe4e6;
+    transform: scale(1.04);
+}
+ 
+.lista-tarefas li button:active {
+    transform: scale(0.97);
+}
+
+/* checkbox + texto dentro do <label> */
+.lista-tarefas li > label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.lista-tarefas input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    accent-color: var(--accent-color);
+}
+
+/* tarefa concluída: texto riscado e mais claro */
+.lista-tarefas input[type="checkbox"]:checked + span {
+    color: var(--muted-text-color);
+    text-decoration: line-through;
 }
  
 /* ==========================================================

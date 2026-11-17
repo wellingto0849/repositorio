@@ -1,9 +1,9 @@
-import Cabecalho from "./componentes/Cabecalho";
-import Cartao from "./componentes/Cartao";
-import Secao from "./componentes/Secao";
-import { projetos } from "./componentes/dados";
-import Contato from "./componentes/Contato";
-import Form from "./componentes/List";
+import Cabecalho from "@/componentes/Cabecalho";
+import Cartao from "@/componentes/Cartao";
+import Secao from "@/componentes/Secao";
+import { projetos } from "../componentes/dados";
+import Contato from "@/componentes/Contato";
+import Form from "@/componentes/ListaTarefa";
 import Link from "next/link";
 
 export default function Home() {

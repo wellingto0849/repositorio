@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { consultarCep } from "@/services/Cep";
 
 export default function BuscaCep() {
   const [cep, setCep] = useState("");
@@ -11,10 +12,7 @@ export default function BuscaCep() {
     setErro("");
     setEndereco(null);
     try {
-      const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-      if (!res.ok) throw new Error("CEP inválido");
-      const dados = await res.json();
-      if (dados.erro) throw new Error("CEP não existe");
+      const dados = await consultarCep(cep);
       setEndereco(dados);
     } catch (err) {
       setErro(err.message);
@@ -23,10 +21,21 @@ export default function BuscaCep() {
 
   return (
     <form onSubmit={buscar}>
-      <input value={cep} onChange={(e) => setCep(e.target.value)} placeholder="Digite o CEP" />
+      <input
+        value={cep}
+        onChange={(e) => setCep(e.target.value)}
+        placeholder="Digite o CEP"
+        aria-label="CEP"
+        className={erro ? "invalido" : undefined}
+      />
       <button type="submit">Buscar</button>
-      {erro && <p style={{ color: "red" }}>{erro}</p>}
-      {endereco && <p>{endereco.logradouro}, {endereco.localidade}</p>}
+      {erro && <p className="erro">{erro}</p>}
+      {endereco && (
+        <p>
+          {endereco.logradouro}, {endereco.bairro}, {endereco.localidade} -{" "}
+          {endereco.uf}
+        </p>
+      )}
     </form>
   );
 }

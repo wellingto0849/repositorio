@@ -1,7 +1,7 @@
-import Contato from "../componentes/Contato";
-import Secao from "../componentes/Secao";
+import Contato from "@/componentes/Contato";
+import Secao from "@/componentes/Secao";
 import Link from "next/link";
-import BuscaCep from "../componentes/BuscaCep";
+import BuscaCep from "@/componentes/BuscaCep";
 
 export default function Contatos(){
     return( 
